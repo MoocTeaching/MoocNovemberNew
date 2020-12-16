@@ -1,0 +1,111 @@
+﻿
+@{
+    ViewBag.Title = "List";
+}
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<link href="~/Content/xenon.css" rel="stylesheet" />
+<link href="~/Content/xenon-core.css" rel="stylesheet" />
+<link href="~/Content/fonts/fontawesome/css/font-awesome.css" rel="stylesheet" />
+<link href="~/Content/custom.css" rel="stylesheet" />
+<script src="~/Scripts/bootstrap.min.js"></script>
+<div class="row">
+    <div class="panel panel-default panel-full">
+        <div class="panel-heading panel-heading-padding">
+            <h3 class="panel-title">用户列表</h3>
+            <div class="panel-options">
+                <a href="~/Admin/user/ajCreate" class="btn btn-gray">添加</a>
+            </div>
+        </div>
+        <div class="panel-body">
+            <table class="table  table-striped" id="example-1">
+                <thead>
+                    <tr>
+                        <th>
+                            用户
+                        </th>
+                        <th>
+                            性别
+                        </th>
+                        <th>
+                            邮箱
+                        </th>
+                        <th>
+                            学号
+                        </th>
+                        <th>
+                            用户状态
+                        </th>
+                        <th>
+                            角色
+                        </th>
+
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody class="middle-align" id="dataBind"></tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+
+<script>
+    search();
+        function search() {
+            $.ajax({
+                url: "@Url.Content("~/Admin/User/GetUserList")",
+                type: "POST", dataType: 'json',
+                success: function (res) {
+                    debugger
+                    if (res.code == 0) {
+                        alert(res.msg);
+                        return;
+                    }
+                    var _html = "";
+                    for (var i = 0; i < res.data.length; i++) {
+
+                        var item = res.data[i];
+                        _html += "<tr>";
+                        _html += "<td>" + item.UserName + "</td>";
+                        _html += "<td>" + item.GenderName + "</td>";
+                        _html += "<td>" + item.Email + "</td>";
+                        _html += "<td>" + item.StudentNo + "</td>";
+                        _html += "<td>" + item.StatusName + "</td>";
+                        _html += "<td>" + item.RoleName + "</td>";
+                        _html += "<td><a href='@Url.Content("/Admin/User/AjEdit/")" + item.ID + "' class = 'fa-pencil-square-o' style = 'font-size:20px'>编辑</a>";
+                        _html += "<a href='javascript:void(0);' onclick='Delete(" + item.ID + ")' class = 'fa-trash' style = 'font-size:20px;margin-left:10px;' title='删除用户'></a></td>";
+                        _html += "</tr>";
+                    }
+
+                    $("#dataBind").html(_html);
+                         }
+               })
+    }
+
+
+    function Delete(id) {
+
+        if (confirm("确定删除当前学员么?")) {
+             $.ajax({
+            url: "@Url.Content("~/Admin/User/DeleteUser")",
+            data: {"DeleteID":id},
+            type: "POST",
+            dataType: 'json',
+            success: function(data) {
+                if (data.code == 0) {
+                    alert("学员删除成功");
+                    window.location = "@Url.Content("~/Admin/User/List")";
+                } else {
+                    alert(data.msg)
+                    return false;
+                }
+            }
+        })
+
+        }
+
+    }
+</script>
+

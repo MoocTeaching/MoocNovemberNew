@@ -1,0 +1,16 @@
+1. DB connect error. Can not add new db role.
+So use win Authentication instead
+<add name="ConnectionString" connectionString="data source=.;initial catalog=MoocLearning;user id=sa;pwd=1" providerName="System.Data.EntityClient"/>
+      -》 "ConnectionString" connectionString="data source=.;initial catalog=MoocLearning;Integrated Security=SSPI;"
+affect area
+Web.config
+App.config
+
+2. CRUD
+1. Create
+ Create.cshtml 文件调用时 出现 System.NullReferenceException:“Object reference not set to an instance of an object.”
+
+2. Details
+Delete 需要 Model.Id (BaseEntity Tkey Id)
+
+Detais.cshtml UserName 不能用
