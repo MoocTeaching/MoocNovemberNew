@@ -73,21 +73,12 @@
     <Compile Include="Context\IDataContextProvider.cs" />
     <Compile Include="Entities\EntityConfig\StudentDbModelBuilder.cs" />
     <Compile Include="Entities\EntityConfig\UserDbModelBuilder.cs" />
-    <Compile Include="Migrations\202012090056153_change temp.cs" />
-    <Compile Include="Migrations\202012090056153_change temp.designer.cs">
-      <DependentUpon>202012090056153_change temp.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\202012090056153_change temp.resx">
-      <DependentUpon>202012090056153_change temp.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Mooc.Core\Mooc.Core.csproj">
