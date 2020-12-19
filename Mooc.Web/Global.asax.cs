@@ -16,7 +16,9 @@ namespace Mooc.Web
         {
             AutofacConfig.Register();
 
-           
+            //Add log4net
+            log4net.Config.XmlConfigurator.Configure();
+
             GlobalConfiguration.Configure(WebApiConfig.Register);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);

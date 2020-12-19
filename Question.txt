@@ -1,0 +1,3 @@
+EntityConfig
+static 声明的用处是什么？
+dbModelBuilder.Entity<User>().ToTable(nameof(User)) 作用是？

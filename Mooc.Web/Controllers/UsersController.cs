@@ -19,7 +19,7 @@ namespace Mooc.Web.Controllers
         // GET: Users
         public ActionResult Index()
         {
-            throw new System.Exception("Error");
+            //throw new System.Exception("Error");
 
             var list = _userService.GetList();
 

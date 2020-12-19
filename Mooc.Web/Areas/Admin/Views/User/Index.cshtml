@@ -75,6 +75,7 @@
                         _html += "<td>" + item.StatusName + "</td>";
                         _html += "<td>" + item.RoleName + "</td>";
                         _html += "<td><a href='@Url.Content("/Admin/User/AjEdit/")" + item.ID + "' class = 'fa-pencil-square-o' style = 'font-size:20px'>编辑</a>";
+                        _html += "<a href='javascript:void(0);' onclick='Reset(" + item.ID + ")'class = 'fa-pencil-square-o' style = 'font-size:20px'>重置密码</a>";
                         _html += "<a href='javascript:void(0);' onclick='Delete(" + item.ID + ")' class = 'fa-trash' style = 'font-size:20px;margin-left:10px;' title='删除用户'></a></td>";
                         _html += "</tr>";
                     }
@@ -107,5 +108,29 @@
         }
 
     }
+
+    function Reset(id) {
+
+        if (confirm("确定重置密码么?")) {
+             $.ajax({
+            url: "@Url.Content("~/Admin/User/Reset")",
+            data: {"ResetID":id},
+            type: "POST",
+            dataType: 'json',
+            success: function(data) {
+                if (data.code == 0) {
+                    alert("密码重置成功");
+                    window.location = "@Url.Content("~/Admin/User/List")";
+                } else {
+                    alert(data.msg)
+                    return false;
+                }
+            }
+        })
+
+        }
+
+    }
+
 </script>
 

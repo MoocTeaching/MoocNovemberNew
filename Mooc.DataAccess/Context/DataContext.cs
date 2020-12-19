@@ -27,6 +27,8 @@ namespace Mooc.DataAccess.Context
 
         public DbSet<Student> Students { get; set; }
 
+        public DbSet<Teacher> Teachers { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

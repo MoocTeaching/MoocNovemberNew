@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.1300
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30413.136
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{0FDE55BE-4765-4143-89AA-F331590D846E}"
 EndProject
@@ -24,6 +24,11 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mooc.Shared", "Mooc.Shared\Mooc.Shared.csproj", "{226BE73C-4D27-4775-BF99-54D574E530B6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mooc.Services", "Mooc.Services\Mooc.Services.csproj", "{2E54E776-CBF3-4C33-81ED-34064590085D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Note", "Note", "{3125DA75-0B5C-41A3-A950-36836AE09F71}"
+	ProjectSection(SolutionItems) = preProject
+		Question.txt = Question.txt
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
