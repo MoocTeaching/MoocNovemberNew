@@ -7,10 +7,10 @@ using Mooc.Web.Areas.Admin.Attribute;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.Data.Entity.Validation;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
-using System.Web;
+
 using System.Web.Mvc;
 using System.Web.Security;
 
@@ -21,7 +21,7 @@ namespace Mooc.Web.Areas.Admin.Controllers
     public class UserController : Controller
     {
         // GET: Admin/User
-        
+
         public ActionResult Index()
         {
             //HttpContext.Session[]
@@ -49,7 +49,7 @@ namespace Mooc.Web.Areas.Admin.Controllers
         [HttpPost]
         public JsonResult GetUserList()
         {
-            throw new Exception("Index");
+            //throw new Exception("Index");
             PageResult<UserDto> result = new PageResult<UserDto>() { data = new List<UserDto>(), PageIndex = 0, PageSize = 0 };
             var listview = _userService.GetList();
             result.data = listview;
@@ -57,27 +57,52 @@ namespace Mooc.Web.Areas.Admin.Controllers
             return Json(result);
         }
 
+        [HttpGet]
+        public ViewResult Create()
+        {
+
+            return View();
+        }
+
         //Add Create user
-         [HttpPost]
-        public async Task<JsonResult> ajCreate(string username, string gender, string role, string major)
+        [HttpPost]
+        public async Task<JsonResult> Create(CreateOrUpdateUserDto createOrUpdateUserDto)
         {
             CreateOrUpdateUserDto addusr = new CreateOrUpdateUserDto();
 
             try
             {
-                if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(gender) || string.IsNullOrEmpty(role) || string.IsNullOrEmpty(major))
+                if (!ModelState.IsValid)
                 {
-                    return Json(new { code = 1, msg = "用户名，性别，角色，专业不能为空" });
+                    var c = ModelState;
+                    //return Json(new { code = 1, msg = "用户名，性别，角色，专业不能为空" });
+
+                    StringBuilder stringBuilder = new StringBuilder();
+                    foreach (var key in ModelState.Keys)
+                    {
+                        var modelstate = ModelState[key];
+                        if (modelstate.Errors.Any())
+                        {
+                            foreach (var item in modelstate.Errors)
+                            {
+                                stringBuilder.AppendLine(item.ErrorMessage);
+                            }
+                            //return modelstate.Errors.FirstOrDefault().ErrorMessage;
+                            //return Json(new { code = 1,msg= modelstate.Errors.FirstOrDefault().ErrorMessage });
+                        }
+                    }
+                    return Json(new { code = 1,msg= stringBuilder.ToString() });
+
                 }
                 else
                 {
                     //
                     //Add user to db.
                     //
-                    addusr.UserName = username;
-                    addusr.Gender = gender;
+                    addusr.UserName = createOrUpdateUserDto.UserName;
+                    addusr.Gender = createOrUpdateUserDto.Gender;
                     //addusr.RoleType = ;
-                    addusr.Major = major;
+                    addusr.Major = createOrUpdateUserDto.Major;
 
                     await this._userService.Add(addusr);
 
@@ -86,10 +111,10 @@ namespace Mooc.Web.Areas.Admin.Controllers
             }
             catch (Exception e)
             {
-               Console.WriteLine(e.Message);
-               throw;
+                Console.WriteLine(e.Message);
+                throw;
             }
-            
+
         }
 
         // Reset Password

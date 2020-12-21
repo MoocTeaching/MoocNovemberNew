@@ -202,9 +202,10 @@
     <Content Include="Content\Login\fonts\franchise-bold-webfont.ttf" />
     <Content Include="Content\Login\fonts\franchise-bold-webfont.woff" />
     <Content Include="Areas\Admin\Views\User\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Areas\Admin\Views\User\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Teacher\Create.cshtml" />
+    <Content Include="Areas\web.config" />
+    <Content Include="Areas\Admin\Views\User\ajCreate.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jqPaginator.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
@@ -217,7 +218,6 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
@@ -232,6 +232,7 @@
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Home\Error.cshtml" />
     <Content Include="Web.config" />
+    <Content Include="Views\Web.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

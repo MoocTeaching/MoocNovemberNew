@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using Mooc.DataAccess.Context;
 using Mooc.Dtos.Teacher;
 using Mooc.Models.Entities;
 using Mooc.Services.Interfaces;
@@ -10,6 +9,7 @@ using System.Data.Entity.Validation;
 using System.Linq;
 using System.Threading.Tasks;
 using Mooc.Utils;
+using Mooc.DataAccess.Context;
 
 namespace Mooc.Services.Service
 {

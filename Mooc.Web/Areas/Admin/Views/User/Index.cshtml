@@ -13,7 +13,7 @@
         <div class="panel-heading panel-heading-padding">
             <h3 class="panel-title">用户列表</h3>
             <div class="panel-options">
-                <a href="~/Admin/user/ajCreate" class="btn btn-gray">添加</a>
+                <a href="~/Admin/user/Create" class="btn btn-gray">添加</a>
             </div>
         </div>
         <div class="panel-body">
@@ -74,7 +74,7 @@
                         _html += "<td>" + item.StudentNo + "</td>";
                         _html += "<td>" + item.StatusName + "</td>";
                         _html += "<td>" + item.RoleName + "</td>";
-                        _html += "<td><a href='@Url.Content("/Admin/User/AjEdit/")" + item.ID + "' class = 'fa-pencil-square-o' style = 'font-size:20px'>编辑</a>";
+                        _html += "<td><a href='@Url.Content("/Admin/User/Create/")" + item.ID + "' class = 'fa-pencil-square-o' style = 'font-size:20px'>编辑</a>";
                         _html += "<a href='javascript:void(0);' onclick='Reset(" + item.ID + ")'class = 'fa-pencil-square-o' style = 'font-size:20px'>重置密码</a>";
                         _html += "<a href='javascript:void(0);' onclick='Delete(" + item.ID + ")' class = 'fa-trash' style = 'font-size:20px;margin-left:10px;' title='删除用户'></a></td>";
                         _html += "</tr>";

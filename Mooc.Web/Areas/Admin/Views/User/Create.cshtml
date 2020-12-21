@@ -18,7 +18,7 @@
     <div class="form">
 
         <input type="text" name="username" class="username" placeholder="请输入用户名" id="userId"> <br>
-        <input type="radio" name="gender" class="gender" onclick="myFunction(this.value)" value="male" placeholder="男" id="genderId"/>
+        <input type="radio" name="gender" class="gender" onclick="myFunction(this.value)" value="male" placeholder="男" id="genderId" />
         <input type="radio" name="gender" class="gender" onclick="myFunction(this.value)" value="female" placeholder="女" id="genderId" /> <br>
         <label for"role">用户角色</label>
         <select name="role" id="roleId">
@@ -30,7 +30,8 @@
         <input type="text" name="major" class"major" placeholder="请输入专业" id="majorId" /><br>
 
         <button onclick="submit()" class="submit">提交</button>
-        <a class="backlink" href="../users">返回列表</a>
+        <input type="button" value="返回" onclick="back()" class="btn btn-danger btn-margin" />
+        @*<a class="backlink" href="../users">返回列表</a>*@
     </div>
     <script src="~/Scripts/jquery-3.3.1.min.js"></script>
 </body>
@@ -48,7 +49,7 @@
 
     function submit() {
 
-        var username = $.trim($("#userid").val());
+        var username = $.trim($("#userId").val());
         if (username == "") {
             alert("用户不能为空");
             return;
@@ -73,12 +74,12 @@
         }
 
         $.ajax({
-                url: "@Url.Content("~/Users/ajCreate")",
-            data: { "Username": username, "Role": role, "Gender": gender, "Major": major},
+                url: "@Url.Content("~/Admin/User/Create")",
+            data: { "UserName": username, "Role": role, "Gender": gender, "Major": major},
                 type: "POST", dataType: 'json',
                 success: function (data) {
                     if (data.code == 0) {
-                        window.location = "@Url.Content("~/Users/Index")";
+                        window.location = "@Url.Content("~/User/Index")";
                     }
                     else {
                         alert(data.msg)
@@ -87,5 +88,9 @@
                 }
         })
     }
+
+     function back() {
+            window.location.href = "@Url.Content("~/Admin/User/")";
+        }
 </script>
 
