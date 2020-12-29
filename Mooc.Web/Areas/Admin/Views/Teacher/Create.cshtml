@@ -41,7 +41,6 @@
 
 <script>
     function submit() {
-        //alert("submit???");
         var teacherName = $.trim($("#usernametext").val());
         if (teacherName == "") {
             alert("教师姓名不能为空");
@@ -53,19 +52,16 @@
             alert("教师级别不能为空");
             return;
         }
-        alert("submit333");
         var company = $.trim($("#companyId").val());
         if (company == "") {
             alert("工作单位不能为空");
             return;
         }
-        alert("submit444");
         var department = $.trim($("#departmentId").val());
         if (department == "") {
             alert("部门不能为空");
             return;
         }
-        alert("submit555");
         var intro = $.trim($("#introId").val());
         if (intro == "") {
             alert("简介不能为空");
