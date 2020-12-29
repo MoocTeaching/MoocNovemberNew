@@ -78,9 +78,9 @@
     <Compile Include="Entities\EntityConfig\StudentDbModelBuilder.cs" />
     <Compile Include="Entities\EntityConfig\TeacherDbModelBuilder.cs" />
     <Compile Include="Entities\EntityConfig\UserDbModelBuilder.cs" />
-    <Compile Include="Migrations\202012190851578_Add Teacher Table.cs" />
-    <Compile Include="Migrations\202012190851578_Add Teacher Table.designer.cs">
-      <DependentUpon>202012190851578_Add Teacher Table.cs</DependentUpon>
+    <Compile Include="Migrations\202012200330444_test12202020.cs" />
+    <Compile Include="Migrations\202012200330444_test12202020.designer.cs">
+      <DependentUpon>202012200330444_test12202020.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\202012291051156_add teacher controller.cs" />
     <Compile Include="Migrations\202012291051156_add teacher controller.designer.cs">
@@ -91,6 +91,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -104,8 +105,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202012190851578_Add Teacher Table.resx">
-      <DependentUpon>202012190851578_Add Teacher Table.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202012200330444_test12202020.resx">
+      <DependentUpon>202012200330444_test12202020.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202012291051156_add teacher controller.resx">
       <DependentUpon>202012291051156_add teacher controller.cs</DependentUpon>
