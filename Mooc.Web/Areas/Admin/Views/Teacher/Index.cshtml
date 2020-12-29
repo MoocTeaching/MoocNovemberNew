@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "List";
+    ViewBag.Title = "Teacher List";
 }
 <link href="~/Content/bootstrap.css" rel="stylesheet" />
 <link href="~/Content/xenon.css" rel="stylesheet" />
@@ -11,9 +11,9 @@
 <div class="row">
     <div class="panel panel-default panel-full">
         <div class="panel-heading panel-heading-padding">
-            <h3 class="panel-title">用户列表</h3>
+            <h3 class="panel-title">教师 列表</h3>
             <div class="panel-options">
-                <a href="~/Admin/User/Create" class="btn btn-gray">添加</a>
+                <a href="~/Admin/Teacher/Create" class="btn btn-gray">添加</a>
             </div>
         </div>
         <div class="panel-body">
@@ -21,24 +21,18 @@
                 <thead>
                     <tr>
                         <th>
-                            用户
+                            教师姓名
                         </th>
                         <th>
-                            性别
+                            级别
                         </th>
                         <th>
-                            邮箱
+                            工作单位
                         </th>
                         <th>
-                            学号
+                            部门
                         </th>
-                        <th>
-                            用户状态
-                        </th>
-                        <th>
-                            角色
-                        </th>
-
+                        
                         <th>操作</th>
                     </tr>
                 </thead>
@@ -55,7 +49,7 @@
     search();
         function search() {
             $.ajax({
-                url: "@Url.Content("~/Admin/User/GetUserList")",
+                url: "@Url.Content("~/Admin/Teacher/GetTeacherList")",
                 type: "POST", dataType: 'json',
                 success: function (res) {
 
@@ -69,14 +63,11 @@
 
                         var item = res.data[i];
                         _html += "<tr>";
-                        _html += "<td>" + item.UserName + "</td>";
-                        _html += "<td>" + item.GenderName + "</td>";
-                        _html += "<td>" + item.Email + "</td>";
-                        _html += "<td>" + item.StudentNo + "</td>";
-                        _html += "<td>" + item.StatusName + "</td>";
-                        _html += "<td>" + item.RoleName + "</td>";
-                        _html += "<td><a href='@Url.Content("/Admin/User/AjEdit/")" + item.Id + "' class = 'fa-pencil-square-o' style = 'font-size:20px'> 编辑 </a>";
-                        _html += "<a href='javascript:void(0);' onClick='Reset(" + item.Id + ")' class = 'fa-pencil-square-o' style = 'font-size:20px'> 重置 </a>";
+                        _html += "<td>" + item.TeacherName + "</td>";
+                        _html += "<td>" + item.Level + "</td>";
+                        _html += "<td>" + item.Company + "</td>";
+                        _html += "<td>" + item.Department + "</td>";
+                        _html += "<td><a href='@Url.Content("/Admin/Teacher/AjEdit/")" + item.Id + "' class = 'fa-pencil-square-o' style = 'font-size:20px'> 编辑 </a>";
                         _html += "<a href='javascript:void(0);' onClick='Delete(" + item.Id + ")' class = 'fa-trash' style = 'font-size:20px'> 删除 </a></td>";
                         _html += "</tr>";
                     }
@@ -89,50 +80,25 @@
 
     function Delete(Id) {
 
-        if (confirm("确定删除当前学员么?")) {
+        if (confirm("确定删除当前教师吗?")) {
              $.ajax({
-            url: "@Url.Content("~/Admin/User/DeleteUser")",
+            url: "@Url.Content("~/Admin/Teacher/DeleteTeacher")",
                  data: { "DeleteID": Id},
             type: "POST",
             dataType: 'json',
             success: function(data) {
                 if (data.code == 0) {
-                    alert("学员删除成功");
-                    window.location = "@Url.Content("~/Admin/User/index")";
-                } else {  
-                    alert(data.msg)
-                    return false;
-                }
-            }
-        })
-
-        }
-
-    }
-
-    function Reset(Id) {
-        //alert(Id);
-
-        if (confirm("确定重置密码么?")) {
-             $.ajax({
-            url: "@Url.Content("~/Admin/User/Reset")",
-                 data: { "ResetID": Id},
-            type: "POST",
-            dataType: 'json',
-            success: function(data) {
-                if (data.code == 0) {
-                    alert("密码重置成功");
-                    window.location = "@Url.Content("~/Admin/User/List")";
+                    alert("教师删除成功");
+                    window.location = "@Url.Content("~/Admin/Teacher/index")";
                 } else {
                     alert(data.msg)
                     return false;
                 }
             }
         })
-
         }
-
     }
+
 
 </script>
 

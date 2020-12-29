@@ -1,17 +1,89 @@
-﻿@{
+﻿
+@{
     Layout = null;
 }
 
 <!DOCTYPE html>
-
-<html>
+<html lang="en" class="no-js">
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title></title>
+    <meta charset="utf-8">
+    <title>创建教师</title>
+    @*responsive website*@
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 </head>
+
+
 <body>
-    <div>
-    
+    <h1>创建 教师</h1>
+    <div class="form">
+        <label for="username">教师 姓名</label> <br />
+        <input type="text" name="username" class="username" placeholder="请输入用户名" id="usernametext"> <br />
+
+        <label for="level">级别</label> <br>
+        <input type="text" name="level" class="level" placeholder="请输入级别" id="levelId"> <br>
+
+        <label for="company">工作单位</label> <br>
+        <input type="text" name="company" class="level" placeholder="请输入单位" id="companyId"> <br>
+
+        <label for="department">部门</label> <br>
+        <input type="text" name="department" class="department" placeholder="请输入部门" id="departmentId"> <br>
+
+        <label for="intro">简介</label> <br />
+        <input type="text" name="intro" class="intro" placeholder="请输入简介" id="introId" /><br>
+
+        <button onclick="submit()" class="submit">提交</button> <br />
+        <a class="backlink" href="../teacher">返回列表</a>
     </div>
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
 </body>
 </html>
+
+<script>
+    function submit() {
+        //alert("submit???");
+        var teacherName = $.trim($("#usernametext").val());
+        if (teacherName == "") {
+            alert("教师姓名不能为空");
+            return;
+        }
+
+        var level = $.trim($("#levelId").val());
+        if (level == "") {
+            alert("教师级别不能为空");
+            return;
+        }
+        alert("submit333");
+        var company = $.trim($("#companyId").val());
+        if (company == "") {
+            alert("工作单位不能为空");
+            return;
+        }
+        alert("submit444");
+        var department = $.trim($("#departmentId").val());
+        if (department == "") {
+            alert("部门不能为空");
+            return;
+        }
+        alert("submit555");
+        var intro = $.trim($("#introId").val());
+        if (intro == "") {
+            alert("简介不能为空");
+        }
+
+        $.ajax({
+            url: "@Url.Content("~/Teacher/Create")",
+            data: { "TeacherName": teacherName, "Level": level, "Company": company, "Department": department, "Introduction": intro },
+            type: "POST", dataType: 'json',
+            success: function (data) {
+                if (data.code == 0) {
+                    window.location = "@Url.Content("~/Teacher/Index")";
+                }
+                else {
+                    alert(data.msg)
+                }
+            }
+        })
+
+    }
+</script>

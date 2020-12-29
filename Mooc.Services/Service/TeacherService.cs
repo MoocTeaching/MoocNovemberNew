@@ -113,9 +113,9 @@ namespace Mooc.Services.Service
             }
         }
 
-        public bool Delete(CreateOrUpdateTeacherDto deleteTeacher)
+        public bool Delete(int deleteID)
         {
-            var teacher = Mapper.Map<Teacher>(deleteTeacher);
+            var teacher = _db.Teachers.Find(deleteID);
             this._db.Teachers.Remove(teacher);
             return this._db.SaveChanges() > 0;
         }

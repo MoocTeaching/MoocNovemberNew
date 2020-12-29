@@ -18,19 +18,22 @@
     <div class="form">
 
         <input type="text" name="username" class="username" placeholder="请输入用户名" id="userId"> <br>
-        <input type="radio" name="gender" class="gender" onclick="myFunction(this.value)" value="male" placeholder="男" id="genderId"/>
-        <input type="radio" name="gender" class="gender" onclick="myFunction(this.value)" value="female" placeholder="女" id="genderId" /> <br>
+        <label for"gender">性别</label> <br>
+        <input type="radio" name="gender" class="gender" onclick="myFunction(this.value)" value="male" id="genderId" />
+        <label for="maile">Male</label><br>
+        <input type="radio" name="gender" class="gender" onclick="myFunction(this.value)" value="female" id="genderId" />
+        <label for="maile">Female</label><br>
         <label for"role">用户角色</label>
         <select name="role" id="roleId">
             <option value="student">学生</option>
             <option value="teacher">老师</option>
         </select>
         <br />
-        @*<input type="password" name="password" class="password" placeholder="请输入密码" id="pwdId">*@
+        <label for"major">专业</label> <br />
         <input type="text" name="major" class"major" placeholder="请输入专业" id="majorId" /><br>
 
         <button onclick="submit()" class="submit">提交</button>
-        <a class="backlink" href="../users">返回列表</a>
+        <a class="backlink" href="../user">返回列表</a>
     </div>
     <script src="~/Scripts/jquery-3.3.1.min.js"></script>
 </body>
@@ -62,7 +65,7 @@
 
         var gender = $.trim($("#genderId").val());
         if (gender == "") {
-            alert("性别不能为空")
+            alert("性别不能为空");
             return;
         }
 
@@ -73,12 +76,12 @@
         }
 
         $.ajax({
-                url: "@Url.Content("~/Users/ajCreate")",
+                url: "@Url.Content("~/User/Create")",
             data: { "Username": username, "Role": role, "Gender": gender, "Major": major},
                 type: "POST", dataType: 'json',
                 success: function (data) {
                     if (data.code == 0) {
-                        window.location = "@Url.Content("~/Users/Index")";
+                        window.location = "@Url.Content("~/User/Index")";
                     }
                     else {
                         alert(data.msg)

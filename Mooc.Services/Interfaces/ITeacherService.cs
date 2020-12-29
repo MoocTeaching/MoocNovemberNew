@@ -21,7 +21,7 @@ namespace Mooc.Services.Interfaces
 
         Task<bool> Update(CreateOrUpdateTeacherDto updateTeacher);
 
-        bool Delete(CreateOrUpdateTeacherDto deleteTeacher);
+        bool Delete(int deleteTeacher);
 
     }
 }
