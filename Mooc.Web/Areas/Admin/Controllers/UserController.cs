@@ -94,8 +94,15 @@ namespace Mooc.Web.Areas.Admin.Controllers
                 else
                 {
                     addusr.UserName = createorUpdateUserDto.UserName;
+                    addusr.Email = createorUpdateUserDto.Email;
+                    //addusr.RoleType.GetTypeCode
                     addusr.Gender = createorUpdateUserDto.Gender;
                     addusr.Major = createorUpdateUserDto.Major;
+
+                    var originPW = createorUpdateUserDto.PassWord;
+                    
+                    string pwd = MD5Help.MD5Encoding(originPW, ConfigurationManager.AppSettings["sKey"].ToString());
+                    addusr.PassWord = pwd;
 
                     await this._userService.Add(addusr);
 
