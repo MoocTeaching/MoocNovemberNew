@@ -173,7 +173,7 @@ namespace Mooc.Web.Controllers
 
             if (ModelState.IsValid)
             {
-                this._userService.Delete(user);
+                this._userService.Delete(id);
             }
 
             return RedirectToAction("Index");

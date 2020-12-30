@@ -163,7 +163,7 @@
     <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Areas\Admin\Controllers\TeachersController.cs" />
+    <Compile Include="Areas\Admin\Controllers\TeacherController.cs" />
     <Compile Include="Controllers\UserLoginController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
@@ -202,10 +202,10 @@
     <Content Include="Content\Login\fonts\franchise-bold-webfont.ttf" />
     <Content Include="Content\Login\fonts\franchise-bold-webfont.woff" />
     <Content Include="Areas\Admin\Views\User\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Areas\Admin\Views\User\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Teacher\Create.cshtml" />
-    <Content Include="Areas\web.config" />
-    <Content Include="Areas\Admin\Views\User\ajCreate.cshtml" />
+    <Content Include="Areas\Admin\Views\Teacher\Index.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jqPaginator.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
@@ -224,11 +224,8 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Users\Create.cshtml" />
     <Content Include="Views\Users\Index.cshtml" />
     <Content Include="Views\Users\Details.cshtml" />
-    <Content Include="Views\Users\Edit.cshtml" />
-    <Content Include="Views\Users\Delete.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Home\Error.cshtml" />
     <Content Include="Web.config" />

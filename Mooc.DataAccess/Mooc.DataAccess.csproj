@@ -82,6 +82,10 @@
     <Compile Include="Migrations\202012200330444_test12202020.designer.cs">
       <DependentUpon>202012200330444_test12202020.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202012291051156_add teacher controller.cs" />
+    <Compile Include="Migrations\202012291051156_add teacher controller.designer.cs">
+      <DependentUpon>202012291051156_add teacher controller.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -103,6 +107,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202012200330444_test12202020.resx">
       <DependentUpon>202012200330444_test12202020.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012291051156_add teacher controller.resx">
+      <DependentUpon>202012291051156_add teacher controller.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

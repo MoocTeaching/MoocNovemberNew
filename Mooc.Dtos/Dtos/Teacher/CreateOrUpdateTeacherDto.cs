@@ -18,7 +18,7 @@ namespace Mooc.Dtos.Teacher
         [Display(Name = "教师姓名")]
         public string TeacherName { get; set; }
 
-        [Required(ErrorMessage = "教师姓名必填")]
+        [Required(ErrorMessage = "级别必填")]
         [Display(Name = "级别")]
         public string Level { get; set; }
 

@@ -1,5 +1,6 @@
 ﻿using Mooc.Core.IDependency;
 using Mooc.Dtos.User;
+using Mooc.Models.Entities;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -20,7 +21,7 @@ namespace Mooc.Services.Interfaces
 
         bool Update(CreateOrUpdateUserDto updateUser);
 
-        bool Delete(CreateOrUpdateUserDto deleteUser);
+        bool Delete(int deleteUser);
         
         List<UserDto> GetLoginUser(string email,string pw);
 

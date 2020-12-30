@@ -48,6 +48,13 @@ namespace Mooc.Services.Service
             }
 
         }
+        public bool Delete(int deleteID)
+        {
+            var deleteUser =  _db.Users.Find(deleteID);
+            //var user = Mapper.Map<User>(deleteUser);
+            this._db.Users.Remove(deleteUser);
+            return this._db.SaveChanges() > 0;
+        }
 
         public List<UserDto> GetList()
         {
@@ -78,17 +85,14 @@ namespace Mooc.Services.Service
         //Update Edit items
         public bool Update(CreateOrUpdateUserDto updateUser)
         {
-            var user = Mapper.Map<User>(updateUser);
-            this._db.Users.Add(user);
+            //var user = Mapper.Map<User>(updateUser);
+            //this._db.Users.Add(user);
+            //this._db.Entry(user).State = EntityState.Modified;
+            
             return this._db.SaveChanges() > 0;
         }
 
-        public bool Delete(CreateOrUpdateUserDto deleteUser)
-        {
-            var user = Mapper.Map<User>(deleteUser);
-            this._db.Users.Remove(user);
-            return this._db.SaveChanges() > 0;
-        }
+
 
         public List<UserDto> GetLoginUser(string email, string password)
         {
