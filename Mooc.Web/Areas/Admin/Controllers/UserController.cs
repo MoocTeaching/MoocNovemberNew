@@ -47,13 +47,15 @@ namespace Mooc.Web.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public JsonResult GetUserList()
+        public JsonResult GetUserList(int pageIndex,int pageSize)
         {
             //throw new Exception("Index");
-            PageResult<UserDto> result = new PageResult<UserDto>() { data = new List<UserDto>(), PageIndex = 0, PageSize = 0 };
-            var listview = _userService.GetList();
+            PageResult<UserDto> result = new PageResult<UserDto>();
+            int totalCount=0;
+            var listview = _userService.GetListByPage(pageIndex, pageSize,ref totalCount);
+            result.PageSize = pageSize;
             result.data = listview;
-            result.Count = 0;
+            result.Count = totalCount;
             return Json(result);
         }
 

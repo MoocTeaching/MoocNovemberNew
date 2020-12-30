@@ -11,6 +11,8 @@ namespace Mooc.Services.Interfaces
 
         List<UserDto> GetList();
 
+        List<UserDto> GetListByPage(int pageIndex, int pageSize, ref int totalCount);
+
         Task<UserDto> GetUser(int id);
         Task<UserDto> GetUser(string userName);
 

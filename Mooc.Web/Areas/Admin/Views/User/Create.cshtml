@@ -75,7 +75,7 @@
 
         $.ajax({
                 url: "@Url.Content("~/Admin/User/Create")",
-            data: { "UserName": username, "Role": role, "Gender": gender, "Major": major},
+            data: { "UserName": username, "Role": role, "Gender": gender, "Major": major, StudentNo:"fsaf"},
                 type: "POST", dataType: 'json',
                 success: function (data) {
                     if (data.code == 0) {
