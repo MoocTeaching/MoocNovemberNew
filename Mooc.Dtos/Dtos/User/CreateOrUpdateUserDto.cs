@@ -44,6 +44,8 @@ namespace Mooc.Dtos.User
 
         public string StudentNo { get; set; }
 
+
+        [Required(ErrorMessage = "用户名必填")]
         public string Faulty { get; set; }
 
         public string Major { get; set; }

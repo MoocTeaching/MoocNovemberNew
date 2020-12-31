@@ -28,11 +28,11 @@
             self.extendJquery();
             if (self.verify()) {
                 self.render();
-                
+
                 self.fireEvent(this.options.currentPage, 'init');
             }
 
-            
+
         };
 
         self.verify = function () {
@@ -120,9 +120,9 @@
 
         self.buildItem = function (type, pageData) {
             var html = self.options[type]
-				.replace(/{{page}}/g, pageData)
-				.replace(/{{totalPages}}/g, self.options.totalPages)
-				.replace(/{{totalCounts}}/g, self.options.totalCounts);
+                .replace(/{{page}}/g, pageData)
+                .replace(/{{totalPages}}/g, self.options.totalPages)
+                .replace(/{{totalCounts}}/g, self.options.totalCounts);
 
             return $(html).attr({
                 'jp-role': type,
@@ -132,7 +132,7 @@
 
         self.setPageSizeOption = function (sizeStr) {
             var pageSizeStr = sizeStr;
-            return  '<input type="text" id="jqPageSize" value="'+sizeStr+'" />条/页';
+            return '<input type="text" id="jqPageSize" value="' + sizeStr + '" />条/页';
         }
 
         self.setStatus = function () {
@@ -157,9 +157,9 @@
 
         self.getPages = function () {
             var pages = [],
-				visiblePages = self.options.visiblePages,
-				currentPage = self.options.currentPage,
-				totalPages = self.options.totalPages;
+                visiblePages = self.options.visiblePages,
+                currentPage = self.options.currentPage,
+                totalPages = self.options.totalPages;
 
             if (visiblePages > totalPages) {
                 visiblePages = totalPages;
@@ -269,7 +269,7 @@
 
     $.fn.jqPaginator = function () {
         var self = this,
-			args = Array.prototype.slice.call(arguments);
+            args = Array.prototype.slice.call(arguments);
 
         if (typeof args[0] === 'string') {
             var $instance = $(self).data('jqPaginator');

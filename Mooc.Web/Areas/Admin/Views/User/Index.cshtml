@@ -7,13 +7,13 @@
 <link href="~/Content/xenon-core.css" rel="stylesheet" />
 <link href="~/Content/fonts/fontawesome/css/font-awesome.css" rel="stylesheet" />
 <link href="~/Content/custom.css" rel="stylesheet" />
-<script src="~/Scripts/bootstrap.min.js"></script>
+
 <div class="row">
     <div class="panel panel-default panel-full">
         <div class="panel-heading panel-heading-padding">
             <h3 class="panel-title">用户列表</h3>
             <div class="panel-options">
-                <a href="~/Admin/User/Create" class="btn btn-gray">添加</a>
+                <a href="~/Admin/user/Create" class="btn btn-gray">添加</a>
             </div>
         </div>
         <div class="panel-body">
@@ -46,24 +46,51 @@
             </table>
 
         </div>
+
+        <div>
+            <ul id="divPagination" class="pagination" style="margin:10px 0px;"></ul>
+        </div>
+
     </div>
+    <input type="hidden" id="PageIndex" value="1" />
 </div>
 
 <script src="~/Scripts/jquery-3.3.1.min.js"></script>
-
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="~/Scripts/jqPaginator.js"></script>
 <script>
-    search();
-        function search() {
+    var pageSize = 5;
+
+    $(function () {
+
+        search();
+
+    });
+
+    function search() {
+        var pageIndex = $("#PageIndex").val();
             $.ajax({
                 url: "@Url.Content("~/Admin/User/GetUserList")",
+                data: { "pageIndex": pageIndex, "pageSize": pageSize },
                 type: "POST", dataType: 'json',
                 success: function (res) {
-
-                    debugger
                     if (res.code == 0) {
                         alert(res.msg);
                         return;
                     }
+                    var pageCount = res.PageCount == 0 ? 1 : res.PageCount;
+                    $("#divPagination").jqPaginator({
+                        totalPages: parseInt(pageCount),
+                        visiblePages: 10,
+                        currentPage: parseInt(pageIndex),
+                        onPageChange: function (num, type) {
+                            $('#PageIndex').val(num);
+                            if ($('#divPagination .active').eq(0).attr('jp-data') !== num.toString()) {
+                                search();
+                            }
+                        }
+                    });
+
                     var _html = "";
                     for (var i = 0; i < res.data.length; i++) {
 
@@ -75,9 +102,9 @@
                         _html += "<td>" + item.StudentNo + "</td>";
                         _html += "<td>" + item.StatusName + "</td>";
                         _html += "<td>" + item.RoleName + "</td>";
-                        _html += "<td><a href='@Url.Content("/Admin/User/AjEdit/")" + item.Id + "' class = 'fa-pencil-square-o' style = 'font-size:20px'> 编辑 </a>";
-                        _html += "<a href='javascript:void(0);' onClick='Reset(" + item.Id + ")' class = 'fa-pencil-square-o' style = 'font-size:20px'> 重置 </a>";
-                        _html += "<a href='javascript:void(0);' onClick='Delete(" + item.Id + ")' class = 'fa-trash' style = 'font-size:20px'> 删除 </a></td>";
+                        _html += "<td><a href='@Url.Content("/Admin/User/Create/")" + item.ID + "' class = 'fa-pencil-square-o' style = 'font-size:20px'>编辑</a>";
+                        _html += "<a href='javascript:void(0);' onclick='Reset(" + item.ID + ")'class = 'fa-pencil-square-o' style = 'font-size:20px'>重置密码</a>";
+                        _html += "<a href='javascript:void(0);' onclick='Delete(" + item.ID + ")' class = 'fa-trash' style = 'font-size:20px;margin-left:10px;' title='删除用户'></a></td>";
                         _html += "</tr>";
                     }
 
@@ -87,19 +114,19 @@
     }
 
 
-    function Delete(Id) {
+    function Delete(id) {
 
         if (confirm("确定删除当前学员么?")) {
              $.ajax({
             url: "@Url.Content("~/Admin/User/DeleteUser")",
-                 data: { "DeleteID": Id},
+            data: {"DeleteID":id},
             type: "POST",
             dataType: 'json',
             success: function(data) {
                 if (data.code == 0) {
                     alert("学员删除成功");
-                    window.location = "@Url.Content("~/Admin/User/index")";
-                } else {  
+                    window.location = "@Url.Content("~/Admin/User/List")";
+                } else {
                     alert(data.msg)
                     return false;
                 }
@@ -110,13 +137,12 @@
 
     }
 
-    function Reset(Id) {
-        //alert(Id);
+    function Reset(id) {
 
         if (confirm("确定重置密码么?")) {
              $.ajax({
             url: "@Url.Content("~/Admin/User/Reset")",
-                 data: { "ResetID": Id},
+            data: {"ResetID":id},
             type: "POST",
             dataType: 'json',
             success: function(data) {

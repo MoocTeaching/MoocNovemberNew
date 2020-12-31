@@ -109,5 +109,12 @@ namespace Mooc.Services.Service
                 return null;
             return Mapper.Map<UserDto>(user);
         }
+
+        public List<UserDto> GetListByPage(int pageIndex, int pageSize, ref int totalCount)
+        {
+            totalCount = _db.Users.Count();
+            var users = _db.Users.OrderBy(p=>p.Id).Skip((pageIndex - 1) * pageSize).Take(pageSize);
+            return Mapper.Map<List<UserDto>>(users);
+        }
     }
 }
