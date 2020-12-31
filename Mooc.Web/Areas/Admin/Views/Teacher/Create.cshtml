@@ -68,12 +68,12 @@
         }
 
         $.ajax({
-            url: "@Url.Content("~/Teacher/Create")",
+            url: "@Url.Content("~/Admin/Teacher/Create")",
             data: { "TeacherName": teacherName, "Level": level, "Company": company, "Department": department, "Introduction": intro },
             type: "POST", dataType: 'json',
             success: function (data) {
                 if (data.code == 0) {
-                    window.location = "@Url.Content("~/Teacher/Index")";
+                    window.location = "@Url.Content("~/Admin/Teacher/Index")";
                 }
                 else {
                     alert(data.msg)

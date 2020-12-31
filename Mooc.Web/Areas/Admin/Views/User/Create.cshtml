@@ -110,12 +110,12 @@
         }
 
         $.ajax({
-                url: "@Url.Content("~/User/Create")",
+                url: "@Url.Content("~/Admin/User/Create")",
             data: { "UserName": username, "Role": role, "Gender": gender, "Major": major, "Email": email, "PassWord":password},
                 type: "POST", dataType: 'json',
                 success: function (data) {
                     if (data.code == 0) {
-                        window.location = "@Url.Content("~/User/Index")";
+                        window.location = "@Url.Content("~/Admin/User/Index")";
                     }
                     else {
                         alert(data.msg)
