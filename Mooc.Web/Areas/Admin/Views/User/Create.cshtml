@@ -17,21 +17,35 @@
     <h1>创建 用户</h1>
     <div class="form">
 
-        <input type="text" name="username" class="username" placeholder="请输入用户名" id="userId"> <br>
-        <input type="radio" name="gender" class="gender" onclick="myFunction(this.value)" value="male" placeholder="男" id="genderId" />
-        <input type="radio" name="gender" class="gender" onclick="myFunction(this.value)" value="female" placeholder="女" id="genderId" /> <br>
+        <label for="username">用户名</label> <br />
+        <input type="text" name="username" class="username" placeholder="请输入用户名" id="userId" required> <br>
+
+        <label for="email">邮箱</label><br />
+        <input type="text" name="email" class="email" placeholder="请输入邮箱" id="emailId" required/> <br />
+
+        <label for="password">密码</label><br />
+        <input type="password" name="password" class="password" placeholder="请输入密码" id="passwordId" required/> <br />
+
+        <label for="passwordrp">确认密码</label><br />
+        <input type="password" name="passwordrp" class="passwordrp" placeholder="请再次输入密码确认" id="passwordrpId" />
+        <input type="radio" name="male" class="gender" onclick="myFunction(this.value)" value="male" id="genderId" />
+        <label for="male">Male</label><br>
+        
+        <input type="radio" name="female" class="gender" onclick="myFunction(this.value)" value="female" id="genderId" />
+        <label for="female">Female</label><br>
+        
         <label for"role">用户角色</label>
         <select name="role" id="roleId">
             <option value="student">学生</option>
             <option value="teacher">老师</option>
         </select>
         <br />
-        @*<input type="password" name="password" class="password" placeholder="请输入密码" id="pwdId">*@
+        
+        <label for"major">专业</label> <br />
         <input type="text" name="major" class"major" placeholder="请输入专业" id="majorId" /><br>
 
         <button onclick="submit()" class="submit">提交</button>
-        <input type="button" value="返回" onclick="back()" class="btn btn-danger btn-margin" />
-        @*<a class="backlink" href="../users">返回列表</a>*@
+        <a class="backlink" href="../user">返回列表</a>
     </div>
     <script src="~/Scripts/jquery-3.3.1.min.js"></script>
 </body>
@@ -55,6 +69,28 @@
             return;
         }
 
+        var email = $.trim($("#emailId").val());
+        if (email == "") {
+            alert("邮箱不能为空");
+            return;
+        }
+
+        var password = $.trim($("#passwordId").val());
+        if (password == "") {
+            alert("密码不能为空");
+            return;
+        }
+
+        var passwordrp = $.trim($("#passwordrpId").val());
+        if (passwordrp == "") {
+            alert("密码不能为空");
+            return;
+        }
+        else if(passwordrp != password) {
+            alert("密码输入不一致");
+            
+        }
+
         var role = $.trim($("#roleId").val());
         if (role == "") {
              alert("用户角色不能为空");
@@ -63,7 +99,7 @@
 
         var gender = $.trim($("#genderId").val());
         if (gender == "") {
-            alert("性别不能为空")
+            alert("性别不能为空");
             return;
         }
 
@@ -75,11 +111,11 @@
 
         $.ajax({
                 url: "@Url.Content("~/Admin/User/Create")",
-            data: { "UserName": username, "Role": role, "Gender": gender, "Major": major, StudentNo:"fsaf"},
+            data: { "UserName": username, "Role": role, "Gender": gender, "Major": major, "Email": email, "PassWord":password},
                 type: "POST", dataType: 'json',
                 success: function (data) {
                     if (data.code == 0) {
-                        window.location = "@Url.Content("~/User/Index")";
+                        window.location = "@Url.Content("~/Admin/User/Index")";
                     }
                     else {
                         alert(data.msg)
@@ -88,9 +124,5 @@
                 }
         })
     }
-
-     function back() {
-            window.location.href = "@Url.Content("~/Admin/User/")";
-        }
 </script>
 
