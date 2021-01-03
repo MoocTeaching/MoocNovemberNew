@@ -172,10 +172,15 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap-responsive.min.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\colorpicker.css" />
+    <Content Include="Content\datepicker.css" />
+    <Content Include="Content\fullcalendar.css" />
+    <Content Include="Content\jquery.gritter.css" />
     <Content Include="Content\Login\animate-custom.css" />
     <Content Include="Content\Login\demo.css" />
     <Content Include="Content\Login\fonts\BebasNeue-webfont.svg" />
@@ -185,6 +190,13 @@
     <Content Include="Content\Login\style.css" />
     <Content Include="Content\Login\style2.css" />
     <Content Include="Content\Login\style3.css" />
+    <Content Include="Content\select2.css" />
+    <Content Include="Content\unicorn.blue.css" />
+    <Content Include="Content\unicorn.grey.css" />
+    <Content Include="Content\unicorn.login.css" />
+    <Content Include="Content\unicorn.main.css" />
+    <Content Include="Content\unicorn.red.css" />
+    <Content Include="Content\uniform.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -241,7 +253,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Admin\Views\Shared\" />
-    <Folder Include="Images\" />
+    <Folder Include="img\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Default\" />
   </ItemGroup>

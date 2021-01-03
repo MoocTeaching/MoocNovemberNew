@@ -30,7 +30,9 @@
         <input type="text" name="department" class="department" placeholder="请输入部门" id="departmentId"> <br>
 
         <label for="intro">简介</label> <br />
-        <input type="text" name="intro" class="intro" placeholder="请输入简介" id="introId" /><br>
+     
+        <textarea  type="text" name="intro" class="intro" placeholder="请输入简介" id="introId" ></textarea>
+        <br>
 
         <button onclick="submit()" class="submit">提交</button> <br />
         <a class="backlink" href="../teacher">返回列表</a>
@@ -65,15 +67,25 @@
         var intro = $.trim($("#introId").val());
         if (intro == "") {
             alert("简介不能为空");
+            return;
         }
+
+        var parm = {};
+        parm.TeacherName = teacherName;
+        parm.Level = level;
+        parm.Company = company;
+        parm.Department = department;
+        parm.Introduction = intro;
 
         $.ajax({
             url: "@Url.Content("~/Teacher/Create")",
-            data: { "TeacherName": teacherName, "Level": level, "Company": company, "Department": department, "Introduction": intro },
+            //data: { "TeacherName": teacherName, "Level": level, "Company": company, "Department": department, "Introduction": intro },
+            data: parm,
+
             type: "POST", dataType: 'json',
             success: function (data) {
                 if (data.code == 0) {
-                    window.location = "@Url.Content("~/Teacher/Index")";
+                    window.location = "@Url.Content("~/Admin/Teacher/Index")";
                 }
                 else {
                     alert(data.msg)

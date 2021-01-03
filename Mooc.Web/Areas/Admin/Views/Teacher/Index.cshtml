@@ -12,9 +12,10 @@
     <div class="panel panel-default panel-full">
         <div class="panel-heading panel-heading-padding">
             <h3 class="panel-title">教师 列表</h3>
-            <div class="panel-options">
-                <a href="~/Admin/Teacher/Create" class="btn btn-gray">添加</a>
-            </div>
+
+        </div>
+        <div class="panel-options">
+            <a href="~/Admin/Teacher/Create" class="btn btn-gray">添加</a>
         </div>
         <div class="panel-body">
             <table class="table  table-striped" id="example-1">
@@ -32,7 +33,7 @@
                         <th>
                             部门
                         </th>
-                        
+
                         <th>操作</th>
                     </tr>
                 </thead>
@@ -89,10 +90,14 @@
             success: function(data) {
                 if (data.code == 0) {
                     alert("教师删除成功");
-                    window.location = "@Url.Content("~/Admin/Teacher/index")";
+                    $("#dataBind").empty();
+                    search();
+                    //window.location = "@Url.Content("~/Admin/Teacher/index")";
+
+
                 } else {
                     alert(data.msg)
-                    return false;
+                    //return false;
                 }
             }
         })

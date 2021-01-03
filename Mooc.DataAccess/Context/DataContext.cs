@@ -35,6 +35,7 @@ namespace Mooc.DataAccess.Context
 
             modelBuilder.UserModelBuilder();
             modelBuilder.StudentModelBuilder();
+            //modelBuilder.TeacherModelBuilder();
         }
 
         public DataContext GetDataContext()

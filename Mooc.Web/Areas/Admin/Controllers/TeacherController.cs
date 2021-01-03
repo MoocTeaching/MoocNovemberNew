@@ -108,7 +108,7 @@ namespace Mooc.Web.Areas.Admin.Controllers
                     addTeacher.Department = createOrUpdateTeacherDto.Department;
                     addTeacher.Company = createOrUpdateTeacherDto.Company;
                     addTeacher.Introduction = createOrUpdateTeacherDto.Introduction;
-
+                    addTeacher.AddTime = DateTime.Now;
                     await this._teacherService.Add(addTeacher);
 
                     return Json(new { code = 0 });

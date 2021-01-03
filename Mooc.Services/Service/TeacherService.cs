@@ -30,7 +30,6 @@ namespace Mooc.Services.Service
                 this._db.Teachers.Add(teacher);
                 return await this._db.SaveChangesAsync() > 0;
             }
-
             catch(DbEntityValidationException e)
             {
                 foreach(var er in e.EntityValidationErrors)
