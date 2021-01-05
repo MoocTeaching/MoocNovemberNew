@@ -29,7 +29,6 @@ namespace Mooc.Dtos.User
 
         public string Gender { get; set; }
 
-
         public string StudentNo { get; set; }
 
         public string Faulty { get; set; }
@@ -54,6 +53,8 @@ namespace Mooc.Dtos.User
         public string StatusName => Enum.GetName(typeof(StatusEnum), UserState);
         [Display(Name = "创建时间")]
         public string DisplayDate => Convert.ToDateTime(AddTime).ToString("yyyy-MM-dd");
+
+        public string Teacher { get; set; }
 
     }
 }

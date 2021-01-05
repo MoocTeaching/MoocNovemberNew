@@ -2,3 +2,4 @@ EntityConfig
 static 声明的用处是什么？
 dbModelBuilder.Entity<User>().ToTable(nameof(User)) 作用是？
 AjaxResutn 是什么
+怎样绑定 dropdown list 值（页面加载时？，点击下拉菜单时？）

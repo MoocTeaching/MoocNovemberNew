@@ -10,7 +10,7 @@ namespace Mooc.Dtos.Teacher
 {
     public class TeacherDto : BaseEntityDto
     {
-        public long ProfessorId { get; set; }
+        public string ProfessorGuid { get; set; }
 
         [Display(Name = "教师姓名")]
         public string TeacherName { get; set; }

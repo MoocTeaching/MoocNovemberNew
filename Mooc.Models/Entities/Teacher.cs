@@ -9,7 +9,7 @@ namespace Mooc.Models.Entities
 {
     public class Teacher : BaseEntity
     {
-        public long ProfessorId { get; set; }
+        public string ProfessorGuid { get; set; }
 
         public string TeacherName { get; set; }
 

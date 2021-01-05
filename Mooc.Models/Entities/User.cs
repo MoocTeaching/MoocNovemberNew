@@ -40,5 +40,7 @@ namespace Mooc.Models.Entities
 
         public string NickName { get; set; }
 
+        public string Teacher { get; set; }
+
     }
 }

@@ -10,9 +10,9 @@ namespace Mooc.Dtos.Teacher
 {
     public class CreateOrUpdateTeacherDto : BaseEntityDto
     {
-        
 
-        public long ProfessorId { get; set; }
+
+        public string ProfessorGuid { get; set; }
 
         [Required(ErrorMessage = "教师姓名必填")]
         [Display(Name = "教师姓名")]

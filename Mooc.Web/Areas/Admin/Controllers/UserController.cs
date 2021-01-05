@@ -64,6 +64,7 @@ namespace Mooc.Web.Areas.Admin.Controllers
             result.data = listview;
             result.Count = totalCount;
             return Json(result);
+
         }
 
         //Add Create user

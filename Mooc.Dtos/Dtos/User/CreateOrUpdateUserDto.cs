@@ -60,5 +60,7 @@ namespace Mooc.Dtos.User
         public string PhotoFileName { get; set; }
 
         public string NickName { get; set; }
+
+        public string Teacher { get; set; }
     }
 }

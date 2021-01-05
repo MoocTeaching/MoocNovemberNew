@@ -34,6 +34,13 @@ namespace Mooc.Web.Areas.Admin.Controllers
             return View();
         }
 
+        //Get Teacher/Edit/id
+        public async Task<ActionResult> Edit(int id)
+        {
+            var teacher = await _teacherService.GetEditTeacher(id);
+            return View(teacher);
+        }
+
         [HttpPost]
         public JsonResult GetTeacherList()
         {
@@ -43,6 +50,13 @@ namespace Mooc.Web.Areas.Admin.Controllers
             result.data = listview;
             result.Count = 0;
             return Json(result);
+        }
+
+        [HttpPost]
+        public JsonResult GetList()
+        {
+            var teacherList = _teacherService.GetList();
+            return Json(teacherList);
         }
 
         public async Task<JsonResult> DeleteTeacher(int? DeleteID)
@@ -67,6 +81,51 @@ namespace Mooc.Web.Areas.Admin.Controllers
                         return Json(new { code = 1, msg = "不能找到相应用户" });
                     }
 
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                throw;
+            }
+        }
+
+        [HttpPost]
+
+        public async Task<JsonResult> Edit(CreateOrUpdateTeacherDto createOrUpdateTeacherDto)
+        {
+            CreateOrUpdateTeacherDto updateTeacher = new CreateOrUpdateTeacherDto();
+
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    var c = ModelState;
+
+                    StringBuilder stringBuilder = new StringBuilder();
+                    foreach (var key in ModelState.Keys)
+                    {
+                        var modelstate = ModelState[key];
+                        if (modelstate.Errors.Any())
+                        {
+                            foreach (var item in modelstate.Errors)
+                            {
+                                stringBuilder.AppendLine(item.ErrorMessage);
+                            }
+                        }
+                    }
+                    return Json(new { code = 1, msg = stringBuilder.ToString() });
+                }
+                else
+                {
+                    updateTeacher.TeacherName = createOrUpdateTeacherDto.TeacherName;
+                    updateTeacher.Level = createOrUpdateTeacherDto.Level;
+                    updateTeacher.Department = createOrUpdateTeacherDto.Department;
+                    updateTeacher.Company = createOrUpdateTeacherDto.Company;
+                    updateTeacher.Introduction = createOrUpdateTeacherDto.Introduction;
+                    //updateTeacher.AddTime = DateTime.Now;
+                    await this._teacherService.Update(updateTeacher);
+                    return Json(new { code = 0 });
                 }
             }
             catch (Exception e)
@@ -109,6 +168,8 @@ namespace Mooc.Web.Areas.Admin.Controllers
                     addTeacher.Company = createOrUpdateTeacherDto.Company;
                     addTeacher.Introduction = createOrUpdateTeacherDto.Introduction;
                     addTeacher.AddTime = DateTime.Now;
+                    // Add guid for Teacher to refer to user
+                    addTeacher.ProfessorGuid = Guid.NewGuid().ToString();
                     await this._teacherService.Add(addTeacher);
 
                     return Json(new { code = 0 });

@@ -2,22 +2,26 @@
 @{
     ViewBag.Title = "List";
 }
-<link href="~/Content/bootstrap.css" rel="stylesheet" />
+@*<link href="~/Content/bootstrap.css" rel="stylesheet" />
 <link href="~/Content/xenon.css" rel="stylesheet" />
 <link href="~/Content/xenon-core.css" rel="stylesheet" />
 <link href="~/Content/fonts/fontawesome/css/font-awesome.css" rel="stylesheet" />
-<link href="~/Content/custom.css" rel="stylesheet" />
+<link href="~/Content/custom.css" rel="stylesheet" />*@
+<script src="~/Scripts/bootstrap.min.js"></script>
 
 <div class="row">
     <div class="panel panel-default panel-full">
         <div class="panel-heading panel-heading-padding">
             <h3 class="panel-title">用户列表</h3>
-            <div class="panel-options">
-                <a href="~/Admin/user/Create" class="btn btn-gray">添加</a>
-            </div>
+
         </div>
+
+        <div class="panel-options">
+            <a href="~/Admin/user/Create" class="btn btn-gray">添加</a>
+        </div>
+
         <div class="panel-body">
-            <table class="table  table-striped" id="example-1">
+            <table class="table  table-striped" id="example-2">
                 <thead>
                     <tr>
                         <th>
@@ -44,7 +48,6 @@
                 </thead>
                 <tbody class="middle-align" id="dataBind"></tbody>
             </table>
-
         </div>
 
         <div>
@@ -58,6 +61,7 @@
 <script src="~/Scripts/jquery-3.3.1.min.js"></script>
 <script src="~/Scripts/bootstrap.min.js"></script>
 <script src="~/Scripts/jqPaginator.js"></script>
+
 <script>
     var pageSize = 5;
 
@@ -74,6 +78,7 @@
                 data: { "pageIndex": pageIndex, "pageSize": pageSize },
                 type: "POST", dataType: 'json',
                 success: function (res) {
+                    debugger;
                     if (res.code == 0) {
                         alert(res.msg);
                         return;
@@ -93,7 +98,7 @@
 
                     var _html = "";
                     for (var i = 0; i < res.data.length; i++) {
-
+                        debugger;
                         var item = res.data[i];
                         _html += "<tr>";
                         _html += "<td>" + item.UserName + "</td>";
@@ -125,7 +130,9 @@
             success: function(data) {
                 if (data.code == 0) {
                     alert("学员删除成功");
-                    window.location = "@Url.Content("~/Admin/User/List")";
+                    $("#dataBind").empty();
+                    search();
+                    //window.location = "@Url.Content("~/Admin/User/List")";
                 } else {
                     alert(data.msg)
                     return false;

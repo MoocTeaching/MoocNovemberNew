@@ -18,17 +18,18 @@
     <div class="form">
 
         <label for="username">用户名</label> <br />
-        <input type="text" name="username" class="username" placeholder="请输入用户名" id="userId" required> <br>
+        <input type="text" name="username" class="username" placeholder="请输入用户名" id="userId"> <br>
 
         <label for="email">邮箱</label><br />
-        <input type="text" name="email" class="email" placeholder="请输入邮箱" id="emailId" required/> <br />
+        <input type="text" name="email" class="email" placeholder="请输入邮箱" id="emailId"/> <br />
 
         <label for="password">密码</label><br />
-        <input type="password" name="password" class="password" placeholder="请输入密码" id="passwordId" required/> <br />
+        <input type="password" name="password" class="password" placeholder="请输入密码" id="passwordId"/> <br />
 
         <label for="passwordrp">确认密码</label><br />
-        <input type="password" name="passwordrp" class="passwordrp" placeholder="请再次输入密码确认" id="passwordrpId" />
-        <input type="radio" name="male" class="gender" onclick="myFunction(this.value)" value="male" id="genderId" />
+        <input type="password" name="passwordrp" class="passwordrp" placeholder="请再次输入密码确认" id="passwordrpId" /> <br />
+        
+        <input type="radio" name="male" class="gender" onclick="myFunction(this.value)" value="male" id="genderId" /> 
         <label for="male">Male</label><br>
         
         <input type="radio" name="female" class="gender" onclick="myFunction(this.value)" value="female" id="genderId" />
@@ -40,6 +41,11 @@
             <option value="teacher">老师</option>
         </select>
         <br />
+
+        <label for="teacher">教员姓名</label>
+        <select name="teacher" id="teacherId">
+            <option>--请选择教师--</option>
+        </select>
         
         <label for"major">专业</label> <br />
         <input type="text" name="major" class"major" placeholder="请输入专业" id="majorId" /><br>
@@ -52,6 +58,33 @@
 </html>
 
 <script>
+    search();
+    function search() {
+        $.ajax({
+            url: "@Url.Content("~/Admin/Teacher/GetTeacherList")",
+            type: "POST",
+            dataType: "json",
+            success: function (res) {
+                debugger;
+                if (res.code == 0) {
+                    alert(res.msg);
+                    return;
+                }
+               
+                for (var i = 0; i < res.data.length; i++) {
+                    var item = res.data[i];
+
+                    $('#teacherId').append(item.TeacherName);
+                }
+                //$.each(res.data, function () {
+                //    $("#teacherId").append($("<option></option>").val(value.Id).html(value.TeacherName));
+                //});
+            },
+            error: function (Result) {
+                alert("Error");
+            }
+        });
+    };
 
     function myFunction(gender) {
         //document.getElementById("result").value = browser;
@@ -88,7 +121,7 @@
         }
         else if(passwordrp != password) {
             alert("密码输入不一致");
-            
+
         }
 
         var role = $.trim($("#roleId").val());
@@ -109,11 +142,21 @@
             return;
         }
 
+        var parm = {};
+        parm.UserName = username;
+        parm.Role = role;
+        parm.Gender = gender;
+        parm.Major = major;
+        parm.Email = email;
+        parm.PassWord = password;
+
         $.ajax({
-                url: "@Url.Content("~/Admin/User/Create")",
-            data: { "UserName": username, "Role": role, "Gender": gender, "Major": major, "Email": email, "PassWord":password},
-                type: "POST", dataType: 'json',
-                success: function (data) {
+            url: "@Url.Content("~/Admin/User/Create")",
+            //data: { "UserName": username, "Role": role, "Gender": gender, "Major": major, "Email": email, "PassWord":password},
+            data:parm,
+            type: "POST", dataType: 'json',
+            success: function (data) {
+
                     if (data.code == 0) {
                         window.location = "@Url.Content("~/Admin/User/Index")";
                     }

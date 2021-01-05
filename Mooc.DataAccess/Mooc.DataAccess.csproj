@@ -78,9 +78,13 @@
     <Compile Include="Entities\EntityConfig\StudentDbModelBuilder.cs" />
     <Compile Include="Entities\EntityConfig\TeacherDbModelBuilder.cs" />
     <Compile Include="Entities\EntityConfig\UserDbModelBuilder.cs" />
-    <Compile Include="Migrations\202012301451307_intiDB.cs" />
-    <Compile Include="Migrations\202012301451307_intiDB.designer.cs">
-      <DependentUpon>202012301451307_intiDB.cs</DependentUpon>
+    <Compile Include="Migrations\202101050349315_change teacher id.cs" />
+    <Compile Include="Migrations\202101050349315_change teacher id.designer.cs">
+      <DependentUpon>202101050349315_change teacher id.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202101050804306_Add teacher name for user table.cs" />
+    <Compile Include="Migrations\202101050804306_Add teacher name for user table.designer.cs">
+      <DependentUpon>202101050804306_Add teacher name for user table.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -101,8 +105,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202012301451307_intiDB.resx">
-      <DependentUpon>202012301451307_intiDB.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202101050349315_change teacher id.resx">
+      <DependentUpon>202101050349315_change teacher id.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101050804306_Add teacher name for user table.resx">
+      <DependentUpon>202101050804306_Add teacher name for user table.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
